@@ -1,0 +1,23 @@
+---
+// Componente de Pie de Página
+const currentYear = new Date().getFullYear();
+---
+<footer>
+    <div class="container">
+        <p>&copy; {currentYear} Taller Práctico - Ingeniería de Software I. Todos los derechos reservados.</p>
+        <p>Desarrollado con Astro y aplicando metodología ágil.</p>
+    </div>
+</footer>
+<style>
+    footer {
+        background-color: #222;
+        color: #bbb;
+        padding: 1rem 0;
+        text-align: center;
+        margin-top: 2rem;
+    }
+    footer p {
+        margin: 0.5rem 0;
+        font-size: 0.85rem;
+    }
+</style>

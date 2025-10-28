@@ -1,0 +1,32 @@
+---
+// 
+import Layout from '../Layout.astro';
+// 
+const { title = "Mi Prototipo Funcional", description = "Descripción por defecto." } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    <meta name="description" content={description}>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 80vh; /* Para asegurar que el footer quede abajo */
+        }
+    </style>
+</head>
+<body>
+    <slot />
+</body>
+</html>

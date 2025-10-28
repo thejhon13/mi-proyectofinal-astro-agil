@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Content from '../components/Content.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout title="Inicio - Prototipo Funcional Ágil" description="Página de inicio del prototipo web desarrollado con Astro.">
+
+    <Header />
+
+    <div class="container">
+        <Content title="Bienvenido a nuestro Taller Práctico">
+            <p>
+                Este es el cuerpo principal del prototipo funcional. Estamos aplicando las fases del proyecto, desde la configuración del entorno hasta el uso del framework Astro.
+            </p>
+            <h3>Aplicando Buenas Prácticas</h3>
+            <ul>
+                <li>Uso de componentes reutilizables (Header, Content, Footer, Layout).</li>
+                <li>Estructura clara de archivos.</li>
+                <li>Listo para integrar funcionalidades y aplicar principios de UX/UI[cite: 3, 4, 9].</li>
+            </ul>
+        </Content>
+    </div>
+
+    <Footer />
+
+</BaseLayout>
