@@ -1,28 +1,171 @@
 ---
-import BaseLayout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Content from '../components/Content.astro';
-import Footer from '../components/Footer.astro';
+import BaseLayout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import Content from "../components/Content.astro";
 ---
 
-<BaseLayout title="Inicio - Prototipo Funcional Ágil" description="Página de inicio del prototipo web desarrollado con Astro.">
+<BaseLayout title="Inicio - Joyería JON" description="Joyería JON: Elegancia y distinción en cada detalle.">
+  <Header />
 
-    <Header />
-
-    <div class="container">
-        <Content title="Bienvenido a nuestro Taller Práctico">
-            <p>
-                Este es el cuerpo principal del prototipo funcional. Estamos aplicando las fases del proyecto, desde la configuración del entorno hasta el uso del framework Astro.
-            </p>
-            <h3>Aplicando Buenas Prácticas</h3>
-            <ul>
-                <li>Uso de componentes reutilizables (Header, Content, Footer, Layout).</li>
-                <li>Estructura clara de archivos.</li>
-                <li>Listo para integrar funcionalidades y aplicar principios de UX/UI[cite: 3, 4, 9].</li>
-            </ul>
-        </Content>
+  <section class="hero">
+    <div class="overlay">
+     <img src="src/icons/logojon.png" class="logo" />
+      <h1>Joyería <span>JON</span></h1>
+      <p>Elegancia y distinción en cada detalle.</p>
+      <a href="/productos" class="btn">Ver Colección</a>
     </div>
+  </section>
 
-    <Footer />
+  <div class="container">
+    <Content title="Bienvenido a Joyería JON">
+      <p>
+        Descubre piezas únicas que combinan elegancia, calidad y diseño. Cada joya refleja nuestro compromiso con la perfección y el estilo atemporal.
+      </p>
+      <h3>Nuestro Catálogo</h3>
+      <ul>
+        <li>Diseños exclusivos y materiales de alta calidad.</li>
+        <li>Aqui encontraras todo tipo de aretes cadenas anillos pulseras y reloj de buena calida.</li>
+        <li>Tenemos una gran variedad de diseños con dijes de diamntes y oro.</li>
+      </ul>
+    </Content>
+  </div>
 
+  <section class="galeria container">
+    <h2>Nuestra Colección Destacada</h2>
+    <div class="grid">
+      <img src="Public/img/anillo-oro.jpg" alt="Anillo de oro" />
+      <img src="Public/img/collar-perlas.jpg" alt="Collar de perlas" />
+      <img src="Public/img/aretes-plata.jpg" alt="Aretes de plata" />
+      <img src="Public/img/pulsera-diamantes.jpg" alt="Pulsera de diamantes" />
+    </div>
+  </section>
+
+  <Footer />
 </BaseLayout>
+
+<style>
+ /* HERO */
+.hero {
+  background-image: url('Public/img/anillo-oro.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 90vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  overflow: hidden;
+}
+
+.overlay {
+  position: relative;
+  z-index: 2;
+  background: rgba(81, 75, 82, 0.6);
+  padding: 2rem;
+  text-align: center;
+  border-radius: 12px;
+}
+
+.logo {
+  width: 120px;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 10px #d4af37);
+}
+
+h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+}
+h1 span {
+  color: #d4af37;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin: 1rem 0;
+  color: #ddd;
+}
+
+.btn {
+  background-color: #d4af37;
+  color: #000;
+  text-decoration: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+.btn:hover {
+  background-color: #b99c30;
+}
+
+.galeria {
+  margin-top: 4rem;
+  position: relative;
+  overflow: hidden; /* evita que el humo se salga */
+  background: #000; /* fondo base oscuro */
+  border-radius: 16px;
+  padding: 3rem 2rem;
+}
+
+.galeria::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 120%;
+  height: 120%;
+  background: url("src/icons/humo.webp") center/cover no-repeat;
+  opacity: 0.25;
+  animation: humo 20s infinite linear;
+  z-index: 0;
+}
+
+@keyframes humo {
+  0% { transform: translate(-25%, -25%) scale(1); opacity: 0.25; }
+  50% { transform: translate(5%, 5%) scale(1.05); opacity: 0.35; }
+  100% { transform: translate(-5%, -5%) scale(1); opacity: 0.25; }
+}
+
+.galeria h2,
+.grid {
+  position: relative;
+  z-index: 1;
+}
+
+.galeria h2 {
+  text-align: center;
+  color: #d4af37;
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 2rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.grid img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.grid img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+}
+
+h3 {
+  color: #d4af37;
+}
+p, li {
+  color: #e7f3f3ff;
+}

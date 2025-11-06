@@ -1,0 +1,109 @@
+---
+import BaseLayout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout title="Compras" description="Revisa tus joyas seleccionadas.">
+  <Header />
+
+  <section class="container">
+    <h2>ARTÍCULOS AGREGADOS PARA COMPRAR</h2>
+    <div id="compras-container"></div>
+
+    <div class="acciones">
+      <button id="vaciar">Vaciar compras</button>
+      <button id="comprar">Aceptar compra</button>
+    </div>
+
+    <p id="mensaje" class="mensaje"></p>
+  </section>
+
+  <Footer />
+</BaseLayout>
+
+<script is:inline>
+  const comprasContainer = document.getElementById("compras-container");
+  const mensaje = document.getElementById("mensaje");
+
+  function mostrarCompras() {
+    const compras = JSON.parse(localStorage.getItem("compras")) || [];
+    if (compras.length === 0) {
+      comprasContainer.innerHTML = "<p>No has agregado ningún producto.</p>";
+      return;
+    }
+
+    comprasContainer.innerHTML = compras.map(p => `
+      <div class="producto-compra">
+        <img src="${p.imagen}" alt="${p.nombre}">
+        <h3>${p.nombre}</h3>
+        <p>${p.precio}</p>
+      </div>
+    `).join("");
+  }
+
+  document.getElementById("vaciar").addEventListener("click", () => {
+    localStorage.removeItem("compras");
+    mostrarCompras();
+  });
+
+  document.getElementById("comprar").addEventListener("click", () => {
+    const compras = JSON.parse(localStorage.getItem("compras")) || [];
+    if (compras.length === 0) {
+      mensaje.textContent = "No tienes productos en la lista de compras.";
+      return;
+    }
+    localStorage.removeItem("compras");
+    comprasContainer.innerHTML = "";
+    mensaje.textContent = "¡Gracias por tu compra! Tus joyas serán enviadas según la dirección proporcionada.";
+  });
+
+  mostrarCompras();
+</script>
+
+<style>
+  h2 {
+    color: #d4af37;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  .producto-compra {
+    background-color: #111;
+    border: 1px solid #d4af37;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .producto-compra img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  .acciones {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  button {
+    background-color: #d4af37;
+    color: #000;
+    border: none;
+    padding: 0.7rem 1.5rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  button:hover {
+    background-color: #b99c30;
+  }
+  .mensaje {
+    text-align: center;
+    color: #d4af37;
+    margin-top: 1rem;
+  }
+</style>

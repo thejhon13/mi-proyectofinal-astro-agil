@@ -1,0 +1,111 @@
+---
+import productos from "../styles/productos.json";
+import BaseLayout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<BaseLayout title="Colección - Joyería Eleganza" description="Explora nuestra exclusiva colección de joyas.">
+  <Header />
+
+  <section class="productos container">
+    <h2 class="titulo">Colección de Joyería</h2>
+
+    <div class="grid" id="lista-productos">
+      {productos.map(({ nombre, precio, descripcion, imagen }) => (
+        <article class="producto">
+          <img src={imagen} alt={nombre} />
+          <h3>{nombre}</h3>
+          <p class="descripcion">{descripcion}</p>
+          <p class="precio">{precio}</p>
+          <button class="agregar" data-nombre={nombre} data-precio={precio} data-imagen={imagen}>
+            COMPRAR
+          </button>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <Footer />
+</BaseLayout>
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", () => {
+    const botones = document.querySelectorAll(".agregar");
+
+    botones.forEach(boton => {
+      boton.addEventListener("click", () => {
+        const nombre = boton.dataset.nombre;
+        const precio = boton.dataset.precio;
+        const imagen = boton.dataset.imagen;
+
+        const producto = { nombre, precio, imagen };
+
+        let compras = JSON.parse(localStorage.getItem("compras")) || [];
+        compras.push(producto);
+        localStorage.setItem("compras", JSON.stringify(compras));
+
+        alert(`${nombre} fue agregado a tus compras `);
+      });
+    });
+  });
+</script>
+
+<style>
+  .titulo {
+    color: #d4af37;
+    font-family: 'Playfair Display', serif;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  .producto {
+    background-color: #111;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(212, 175, 55, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .producto:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+  }
+  img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+  h3 {
+    color: #d4af37;
+    margin-bottom: 0.5rem;
+  }
+  .descripcion {
+    color: #ccc;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+  .precio {
+    font-weight: bold;
+    color: #fff;
+  }
+  button {
+    background-color: #d4af37;
+    color: #000;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  button:hover {
+    background-color: #b99c30;
+  }
+</style>
