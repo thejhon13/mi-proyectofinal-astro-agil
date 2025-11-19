@@ -3,90 +3,90 @@
     "nombre": "Reloj Clásico de Oro",
     "precio": "$250.000",
     "descripcion": "Reloj elegante con correa de cuero genuino y detalles dorados.",
-    "imagen": "Public/img/relog1.jpg"
+    "imagen": "/mi-proyectofinal-astro-agil/img/relog1.jpg"
   },
   {
     "nombre": "Cadena de Plata Italiana",
     "precio": "$180.000",
     "descripcion": "Cadena 100% plata italiana con diseño minimalista.",
-    "imagen": "Public/img/cadena1.jpg"
+    "imagen": "/mi-proyectofinal-astro-agil/img/cadena1.jpg"
   },
   {
     "nombre": "Anillo de Compromiso Brillante",
     "precio": "$320.000",
     "descripcion": "Anillo de plata con incrustaciones de zirconia premium.",
-    "imagen": "Public/img/anillo1.jpeg"
+    "imagen": "/mi-proyectofinal-astro-agil/img/anillo1.jpeg"
   },
   {
     "nombre": "Pulsera Eleganza",
     "precio": "$150.000",
     "descripcion": "Pulsera dorada con cierre magnético y acabado espejo.",
-    "imagen": "Public/img/pulsera1.webp"
+    "imagen": "/mi-proyectofinal-astro-agil/img/pulsera1.webp"
   },
   {
     "nombre": "Aretes de Perla Natural",
     "precio": "$130.000",
     "descripcion": "Aretes clásicos con perlas naturales de agua dulce.",
-    "imagen": "Public/img/aretes1.webp"
+    "imagen": "/mi-proyectofinal-astro-agil/img/aretes1.webp"
   },
   {
     "nombre": "Collar Corazón Dorado",
     "precio": "$200.000",
     "descripcion": "Collar con dije en forma de corazón bañado en oro 18K.",
-    "imagen": "Public/img/collar1.webp"
+    "imagen": "/mi-proyectofinal-astro-agil/img/collar1.webp"
   },
   {
     "nombre": "Anillo Doble Elegance",
     "precio": "$220.000",
     "descripcion": "Anillo ajustable en acero inoxidable con doble aro.",
-    "imagen": "Public/img/anillo2.webp"
+    "imagen": "/mi-proyectofinal-astro-agil/img/anillo2.webp"
   },
   {
     "nombre": "Pulsera de Plata con Dije",
     "precio": "$170.000",
     "descripcion": "Pulsera de plata con pequeño dije en forma de estrella.",
-    "imagen": "Public/img/pulsera2.webp"
+    "imagen": "/mi-proyectofinal-astro-agil/img/pulsera2.webp"
   },
   {
     "nombre": "Reloj Moderno Plateado",
     "precio": "$260.000",
     "descripcion": "Reloj unisex plateado con diseño minimalista y correa metálica.",
-    "imagen": "Public/img/reloj2.webp"
+    "imagen": "/mi-proyectofinal-astro-agil/img/reloj2.webp"
   },
   {
     "nombre": "Cadena Doble Dorada",
     "precio": "$210.000",
     "descripcion": "Cadena dorada de dos niveles con cierre seguro.",
-    "imagen": "Public/img/cadena2.webp"
+    "imagen": "/mi-proyectofinal-astro-agil/img/cadena2.webp"
   },
   {
     "nombre": "Aretes de Cristal Rosa",
     "precio": "$140.000",
     "descripcion": "Aretes pequeños con cristales color rosa y base dorada.",
-    "imagen": "Public/img/aretes2.png"
+    "imagen": "/mi-proyectofinal-astro-agil/img/aretes2.png"
   },
   {
     "nombre": "Dije Luna Plateada",
     "precio": "$120.000",
     "descripcion": "Dije de luna en plata con cadena fina y elegante.",
-    "imagen": "Public/img/dije1.jpeg"
+    "imagen": "/mi-proyectofinal-astro-agil/img/dije1.jpeg"
   },
   {
     "nombre": "Anillo Estilo Vintage",
     "precio": "$280.000",
     "descripcion": "Anillo estilo antiguo con piedra central azul zafiro.",
-    "imagen": "Public/img/anillo3.jpg"
+    "imagen": "/mi-proyectofinal-astro-agil/img/anillo3.jpg"
   },
   {
     "nombre": "Collar Minimalista en Oro Rosa",
     "precio": "$190.000",
     "descripcion": "Collar delgado con baño en oro rosa y dije circular.",
-    "imagen": "Public/img/collar2.webp"
+    "imagen": "/mi-proyectofinal-astro-agil/img/collar2.webp"
   },
   {
     "nombre": "Pulsera de Cuero Unisex",
     "precio": "$160.000",
     "descripcion": "Pulsera tejida de cuero marrón con cierre metálico.",
-    "imagen": "Public/img/pulsera3.webp"
+    "imagen": "/mi-proyectofinal-astro-agil/img/pulsera3.webp"
   }
 ]
