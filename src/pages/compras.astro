@@ -4,106 +4,203 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 ---
 
-<BaseLayout title="Compras" description="Revisa tus joyas seleccionadas.">
+<BaseLayout title="Tus Compras - Joyería JON" description="Revisa tus compras y completa tus datos de envío.">
   <Header />
 
-  <section class="container">
-    <h2>ARTÍCULOS AGREGADOS PARA COMPRAR</h2>
-    <div id="compras-container"></div>
+  <section class="container compras-container">
+    <h2>Mis Compras</h2>
 
-    <div class="acciones">
-      <button id="vaciar">Vaciar compras</button>
-      <button id="comprar">Aceptar compra</button>
+    <div id="cajon-compras" class="grid-compras">
+      <div id="lista-compras"></div>
     </div>
 
-    <p id="mensaje" class="mensaje"></p>
+    <button id="vaciar-compras">Vaciar Compras</button>
+
+    <h3>Datos de envío</h3>
+    <form id="form-envio">
+      <label>Nombre:</label>
+      <input type="text" id="nombre-envio" required />
+      <label>Contacto:</label>
+      <input type="text" id="contacto-envio" required />
+      <label>Método de pago:</label>
+      <select id="metodo-pago" required>
+        <option value="">Selecciona</option>
+        <option value="Nequi">Nequi</option>
+        <option value="PayPal">PayPal</option>
+        <option value="BBVA">BBVA</option>
+        <option value="Daviplata">Daviplata</option>
+      </select>
+      <button type="submit">Finalizar Compra</button>
+    </form>
   </section>
 
   <Footer />
 </BaseLayout>
 
 <script is:inline>
-  const comprasContainer = document.getElementById("compras-container");
-  const mensaje = document.getElementById("mensaje");
+document.addEventListener("DOMContentLoaded", () => {
+  const listaCompras = document.getElementById("lista-compras");
+  const vaciarCompras = document.getElementById("vaciar-compras");
+  const formEnvio = document.getElementById("form-envio");
 
-  function mostrarCompras() {
+  const mostrarCompras = () => {
     const compras = JSON.parse(localStorage.getItem("compras")) || [];
+    listaCompras.innerHTML = "";
+
     if (compras.length === 0) {
-      comprasContainer.innerHTML = "<p>No has agregado ningún producto.</p>";
+      listaCompras.innerHTML = "<p>No tienes productos en tus compras.</p>";
       return;
     }
 
-    comprasContainer.innerHTML = compras.map(p => `
-      <div class="producto-compra">
-        <img src="${p.imagen}" alt="${p.nombre}">
-        <h3>${p.nombre}</h3>
-        <p>${p.precio}</p>
-      </div>
-    `).join("");
+    compras.forEach((prod, index) => {
+      const div = document.createElement("article");
+      div.classList.add("producto"); // Igual que tus productos de colección
+      div.innerHTML = `
+        <img src="${prod.imagen}" alt="${prod.nombre}" />
+        <h3>${prod.nombre}</h3>
+        <p class="descripcion">${prod.descripcion || ''}</p>
+        <p class="precio">${prod.precio}</p>
+        <button class="eliminar" data-index="${index}">Eliminar</button>
+      `;
+      listaCompras.appendChild(div);
+    });
+
+    // Botones eliminar
+    listaCompras.querySelectorAll(".eliminar").forEach(b => {
+      b.addEventListener("click", () => {
+        let compras = JSON.parse(localStorage.getItem("compras")) || [];
+        compras.splice(b.dataset.index, 1);
+        localStorage.setItem("compras", JSON.stringify(compras));
+        mostrarCompras();
+      });
+    });
   }
 
-  document.getElementById("vaciar").addEventListener("click", () => {
+  vaciarCompras.addEventListener("click", () => {
     localStorage.removeItem("compras");
     mostrarCompras();
   });
 
-  document.getElementById("comprar").addEventListener("click", () => {
-    const compras = JSON.parse(localStorage.getItem("compras")) || [];
-    if (compras.length === 0) {
-      mensaje.textContent = "No tienes productos en la lista de compras.";
+  formEnvio.addEventListener("submit", e => {
+    e.preventDefault();
+    const nombre = document.getElementById("nombre-envio").value;
+    const contacto = document.getElementById("contacto-envio").value;
+    const metodo = document.getElementById("metodo-pago").value;
+
+    if (!nombre || !contacto || !metodo) {
+      alert("Por favor completa todos los campos.");
       return;
     }
+
+    alert(`Compra realizada con éxito.\nNombre: ${nombre}\nContacto: ${contacto}\nMétodo: ${metodo}`);
     localStorage.removeItem("compras");
-    comprasContainer.innerHTML = "";
-    mensaje.textContent = "¡Gracias por tu compra! Tus joyas serán enviadas según la dirección proporcionada.";
+    mostrarCompras();
+    formEnvio.reset();
   });
 
   mostrarCompras();
+});
 </script>
 
 <style>
-  h2 {
-    color: #d4af37;
-    text-align: center;
-    margin-bottom: 1rem;
-  }
-  .producto-compra {
-    background-color: #111;
-    border: 1px solid #d4af37;
-    border-radius: 8px;
-    padding: 1rem;
-    margin: 1rem 0;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  .producto-compra img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 8px;
-  }
-  .acciones {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1rem;
-  }
-  button {
-    background-color: #d4af37;
-    color: #000;
-    border: none;
-    padding: 0.7rem 1.5rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  button:hover {
-    background-color: #b99c30;
-  }
-  .mensaje {
-    text-align: center;
-    color: #d4af37;
-    margin-top: 1rem;
-  }
+.compras-container {
+  padding: 2rem;
+  color: #fff;
+}
+.compras-container h2, .compras-container h3 {
+  color: #d4af37;
+  margin-bottom: 1rem;
+}
+
+/* Grid tipo colección */
+.grid-compras {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+/* Tarjetas de productos */
+.producto {
+  background-color: #111;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 12px;
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(212, 175, 55, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.producto:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+}
+
+.producto img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.producto h3 {
+  color: #d4af37;
+  margin-bottom: 0.5rem;
+}
+
+.producto .descripcion {
+  color: #ccc;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+
+.producto .precio {
+  font-weight: bold;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+/* Botón eliminar */
+.producto button {
+  background-color: #d4af37;
+  color: #000;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+  width: 100%;
+}
+.producto button:hover {
+  background-color: #b99c30;
+}
+
+#form-envio input, #form-envio select, #form-envio button {
+  display: block;
+  width: 100%;
+  margin: 0.4rem 0 1rem 0;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+#form-envio button {
+  background-color: #d4af37;
+  border: none;
+  cursor: pointer;
+}
+#form-envio button:hover {
+  background-color: #b99c30;
+}
+
+#vaciar-compras {
+  margin-bottom: 1rem;
+  background-color: #d4af37;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+#vaciar-compras:hover {
+  background-color: #b99c30;
+}
 </style>
