@@ -29,8 +29,9 @@ jobs:
       - name: Build site
         run: npm run build
 
+      # ESTA ES LA LÍNEA CRÍTICA QUE CAUSABA EL ERROR
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v2
         with:
           path: dist
 
