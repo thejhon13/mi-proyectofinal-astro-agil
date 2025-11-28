@@ -10,7 +10,7 @@ import Content from "../components/Content.astro";
 
   <section class="hero">
     <div class="overlay">
-     <img src="/mi-proyectofinal-astro-agil/public/icons/logojon.png" class="logo" />
+      <img src="/icons/logojon.png" class="logo" alt="Logo Joyería JON" />
       <h1>Joyería <span>JON</span></h1>
       <p>Elegancia y distinción en cada detalle.</p>
       <a href="/productos" class="btn">Ver Colección</a>
@@ -25,8 +25,8 @@ import Content from "../components/Content.astro";
       <h3>Nuestro Catálogo</h3>
       <ul>
         <li>Diseños exclusivos y materiales de alta calidad.</li>
-        <li>Aqui encontraras todo tipo de aretes cadenas anillos pulseras y reloj de buena calida.</li>
-        <li>Tenemos una gran variedad de diseños con dijes de diamntes y oro.</li>
+        <li>Aquí encontrarás aretes, cadenas, anillos, pulseras y relojes de excelente calidad.</li>
+        <li>Gran variedad de diseños con dijes de diamantes y oro.</li>
       </ul>
     </Content>
   </div>
@@ -34,10 +34,10 @@ import Content from "../components/Content.astro";
   <section class="galeria container">
     <h2>Nuestra Colección Destacada</h2>
     <div class="grid">
-      <img src="/mi-proyectofinal-astro-agil/img/anillo-oro.jpg" alt="Anillo de oro" />
-      <img src="/mi-proyectofinal-astro-agil/img/collar-perlas.jpg" alt="Collar de perlas" />
-      <img src="/mi-proyectofinal-astro-agil/img/aretes-plata.jpg" alt="Aretes de plata" />
-      <img src="/mi-proyectofinal-astro-agil/img/pulsera-diamantes.jpg" alt="Pulsera de diamantes" />
+      <img src="/img/anillo-oro.jpg" alt="Anillo de oro" />
+      <img src="/img/collar-perlas.jpg" alt="Collar de perlas" />
+      <img src="/img/aretes-plata.jpg" alt="Aretes de plata" />
+      <img src="/img/pulsera-diamantes.jpg" alt="Pulsera de diamantes" />
     </div>
   </section>
 
@@ -47,7 +47,7 @@ import Content from "../components/Content.astro";
 <style>
  /* HERO */
 .hero {
-  background-image: url('/mi-proyectofinal-astro-agil/img/anillo-oro.jpg');
+  background-image: url('/img/anillo-oro.jpg');
   background-size: cover;
   background-position: center;
   height: 90vh;
@@ -80,6 +80,7 @@ h1 {
   color: #ffffff;
   text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
 }
+
 h1 span {
   color: #d4af37;
 }
@@ -99,6 +100,7 @@ h1 span {
   font-weight: 600;
   transition: background 0.3s;
 }
+
 .btn:hover {
   background-color: #b99c30;
 }
@@ -106,8 +108,8 @@ h1 span {
 .galeria {
   margin-top: 4rem;
   position: relative;
-  overflow: hidden; /* evita que el humo se salga */
-  background: #000; /* fondo base oscuro */
+  overflow: hidden;
+  background: #000;
   border-radius: 16px;
   padding: 3rem 2rem;
 }
@@ -119,7 +121,7 @@ h1 span {
   left: 0;
   width: 120%;
   height: 120%;
-  background: url("/mi-proyectofinal-astro-agil/icons/humo.webp") center/cover no-repeat;
+  background: url("/icons/humo.webp") center/cover no-repeat;
   opacity: 0.25;
   animation: humo 20s infinite linear;
   z-index: 0;
@@ -158,6 +160,7 @@ h1 span {
   border: 1px solid rgba(212, 175, 55, 0.3);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
+
 .grid img:hover {
   transform: scale(1.05);
   box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
@@ -166,6 +169,8 @@ h1 span {
 h3 {
   color: #d4af37;
 }
+
 p, li {
   color: #e7f3f3ff;
 }
+</style>
