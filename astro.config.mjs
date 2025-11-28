@@ -4,8 +4,6 @@ import react from '@astrojs/react';
 
 export default defineConfig({
   integrations: [react()],
-  output: "static",
-  base: "/mi-proyectofinal-astro-agil",
+  output: "static"
+
 });
-
-
